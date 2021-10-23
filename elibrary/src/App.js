@@ -14,7 +14,7 @@ import {
 } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
-
+import PdfViewer from './PdfViewer'
 function App() {
   const { user } = useContext(AuthContext);
   return (
@@ -29,15 +29,19 @@ function App() {
         </Route>
 
         <Route path="/profile">
-          {user ? <Profile />: <Redirect to="/" /> }
+          {user ? <Profile /> : <Redirect to="/" />}
         </Route>
 
-        
+
         <Route path="/cart">
-          {user ? <MyBooks />: <Redirect to="/" /> }
+          {user ? <MyBooks /> : <Redirect to="/" />}
         </Route>
-        
+
         <Route path='/products/:productId' component={Product} exact />
+
+        <Route path="/pdfviewer">
+          <PdfViewer />
+        </Route>
       </Switch>
     </Router>
   );
