@@ -42,6 +42,7 @@ function App() {
         <Route path="/pdfviewer">
           <PdfViewer />
         </Route>
+
       </Switch>
     </Router>
   );

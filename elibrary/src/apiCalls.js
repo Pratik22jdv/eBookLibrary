@@ -55,7 +55,7 @@ export const read = (productId) => {
     .catch((err) => console.log(err));
 };
 
-export const borrowBook = (productId, userId) =>{
+export const borrowBook = (productId, userId) => {
   return fetch(`http://localhost:3000/api/users/${productId}/borrow?userId=${userId}`, {
     method: 'PUT',
   })
@@ -65,7 +65,7 @@ export const borrowBook = (productId, userId) =>{
     .catch((err) => console.log(err));
 }
 
-export const userBooks = (userId) =>{
+export const userBooks = (userId) => {
   return fetch(`http://localhost:3000/api/users/books/${userId}`, {
     method: 'GET',
   })
@@ -74,7 +74,7 @@ export const userBooks = (userId) =>{
     })
     .catch((err) => console.log(err));
 }
-export const getProductCategory=(categoryId)=>{
+export const getProductCategory = (categoryId) => {
   return fetch(`http://localhost:3000/categories/${categoryId}`, {
     method: 'GET',
   })
