@@ -16,6 +16,7 @@ const Books = () => {
   //const [error, setError] = useState([]);
 
   const loadProductsBySell = () => {
+    console.log("user", user);
     userBooks(user._id).then((data) => {
         setMyBooks(data);
       
@@ -25,6 +26,7 @@ const Books = () => {
  
 
   useEffect(() => {
+    console.log("aai ghal");
     loadProductsBySell();
     console.log(myBooks);
   }, []);

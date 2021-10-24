@@ -121,6 +121,7 @@ router.get("/books/:id", async (req, res) => {
   try {
     console.log("in try");
     const user = await User.findById(req.params.id);
+    console.log(user);
     const userBooks = await Promise.all(
       user.borrowedBooks.map((bookId) => {
         return Product.findById(bookId);

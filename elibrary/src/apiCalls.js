@@ -74,3 +74,12 @@ export const userBooks = (userId) =>{
     })
     .catch((err) => console.log(err));
 }
+export const getProductCategory=(categoryId)=>{
+  return fetch(`http://localhost:3000/categories/${categoryId}`, {
+    method: 'GET',
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((err) => console.log(err));
+}

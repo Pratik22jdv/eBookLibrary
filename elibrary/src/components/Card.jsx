@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 //import ShowImage from './ShowImage';
 import moment from 'moment';
@@ -18,6 +18,9 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Link from '@material-ui/core/Link';
+
+import { getProductCategory } from '../apiCalls';
+import { Category } from '@material-ui/icons';
 
 //import { addItem, updateItem, removeItem } from './cartHelpers';
 
@@ -76,6 +79,13 @@ const Card = ({
       )
     );
   };
+
+  const [category, setCategory]=useState({});
+  const getCategory =(categoryId) =>{
+    getProductCategory(categoryId).then((data) => {
+        setCategory(data);
+    });
+  }
 
   // const addToCart = () => {
   //   // console.log('added');
@@ -154,6 +164,10 @@ const Card = ({
   // };
 
   const classes = useStyles();
+  useEffect(() => {
+    const categoryId = product.category;
+    getCategory(categoryId);
+  }, []);
 
   return (
     // <div className='card'>
@@ -194,10 +208,12 @@ const Card = ({
               <Typography gutterBottom variant='h5' component='h2'>
                 {product.name}
               </Typography>
-              <Typography className={classes.productDescription}>{product.description.substring(0, 100)}</Typography>
+              <Typography className={classes.productDescription}>{product.description.substring(0, 50)}...</Typography>
+              <p className='black-10'>Author: {product.author}</p>
               <p className='black-10'>Price: ${product.price}</p>
+              <p className='black-10'>Rating: {product.rating}</p>
               <p className='black-9'>
-                Category: {product.category && product.category.name}{' '}
+                Category: {category.name}{' '}
               </p>{' '}
               {/* <p className='black-8'>
                 Added on {moment(product.createdAt).fromNow()}{' '}
