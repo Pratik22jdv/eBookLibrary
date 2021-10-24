@@ -117,6 +117,22 @@ router.put("/:id/borrow", async (req, res) => {
   
 });
 
+router.get("/books/:id", async (req, res) => {
+  try {
+    console.log("in try");
+    const user = await User.findById(req.params.id);
+    const userBooks = await Promise.all(
+      user.borrowedBooks.map((bookId) => {
+        return Product.findById(bookId);
+      })
+    );
+    
+    res.status(200).json(userBooks);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 //unfollow a user
 
 // router.put("/:id/unfollow", async (req, res) => {
