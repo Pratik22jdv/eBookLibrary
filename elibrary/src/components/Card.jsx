@@ -72,7 +72,7 @@ const Card = ({
     return (
       showViewProductButton && (
         <Link href={`/products/${product._id}`} className='mr-2'>
-          <Button variant='contained' color='primary' style={{width:"100%"}}>
+          <Button variant='contained' color='primary' style={{ width: "100%" }}>
             View Product
           </Button>
         </Link>
@@ -80,10 +80,10 @@ const Card = ({
     );
   };
 
-  const [category, setCategory]=useState({});
-  const getCategory =(categoryId) =>{
+  const [category, setCategory] = useState({});
+  const getCategory = (categoryId) => {
     getProductCategory(categoryId).then((data) => {
-        setCategory(data);
+      setCategory(data);
     });
   }
 

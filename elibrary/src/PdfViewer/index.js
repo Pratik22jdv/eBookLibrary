@@ -20,7 +20,7 @@ const PdfViewer = () => {
 			break;
 		case "Harry Potter and Chamber of Secrets":
 			BookLink = pdf_file2;
-			break
+			break;
 
 		case "Core Python Programming":
 			BookLink = pdf_file3;

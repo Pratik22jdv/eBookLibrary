@@ -52,12 +52,13 @@ const Books = () => {
 						{myBooks.map((product, i) => (
 							<div key={i} className='col-xl-4 col-lg-6 col-md-6 col-sm-12'>
 								{/* <Button onClick={setBookOpen("xyz")}> */}
-								<Button >
-									<Link to="/pdfviewer" onClick={() => localStorage.setItem('userBookOpen', JSON.stringify(product))}>
-										Open Book
-									</Link>
-								</Button>
 								<Card product={product} />
+
+								<Link to="/pdfviewer" onClick={() => localStorage.setItem('userBookOpen', JSON.stringify(product))}>
+									<Button variant='contained' color='success' style={{ width: "70%" }}>
+										Open Book
+									</Button>
+								</Link>
 							</div>
 						))}
 					</div>

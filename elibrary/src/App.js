@@ -15,10 +15,15 @@ import {
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
 import PdfViewer from './PdfViewer'
+import Menu from "./components/Menu";
+
 function App() {
   const { user } = useContext(AuthContext);
-  return (
+  return (<>
     <Router>
+      <div style={{ paddingTop: "120px" }}>
+        <Menu />
+      </div>
       <Switch>
         <Route exact path="/">
           <Home />
@@ -45,7 +50,7 @@ function App() {
 
       </Switch>
     </Router>
-  );
+  </>);
 }
 
 export default App;

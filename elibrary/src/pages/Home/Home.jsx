@@ -12,11 +12,15 @@ import Search from "../../components/Search";
 export default function Home() {
     return (
         <div>
-            <div style={{paddingTop:"120px"}}><Menu /> </div>
+            {/* <div style={{ paddingTop: "120px" }}>
+                <Menu />
+            </div> */}
             <Search />
-            
-            <div><Books /></div>
+
+            <div>
+                <Books />
+            </div>
         </div>
-       
+
     )
 }
