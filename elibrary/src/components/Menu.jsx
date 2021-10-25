@@ -115,9 +115,12 @@ const MaterialAppBar = ({ history }) => {
     else return false;
   }
 
-  const signout =()=> {
+  //const {user} = useContext(AuthContext);
+  const hist = useHistory();
+  const logout =()=> {
     window.localStorage.clear();
-    history.push("/");
+    window.location.reload(false);
+    hist.push("/");
     
   }
 
@@ -226,20 +229,20 @@ const MaterialAppBar = ({ history }) => {
         {!isAuthenticated() && (
           <Fragment>
             <MenuItem>
-              <Link style={isActive(history, '/signin')} to='/signin'>
-                <IconButton aria-label='Signin' color='inherit'>
+              <Link style={isActive(history, '/login')} to='/login'>
+                <IconButton aria-label='Login' color='inherit'>
                   <AccountCircleIcon />
                 </IconButton>
-                Signin
+                Login
               </Link>
             </MenuItem>
 
             <MenuItem>
-              <Link style={isActive(history, '/signup')} to='/signup'>
-                <IconButton aria-label='Signup' color='inherit'>
+              <Link style={isActive(history, '/register')} to='/register'>
+                <IconButton aria-label='Register' color='inherit'>
                   <PersonAddIcon />
                 </IconButton>
-                Signup
+                Register
               </Link>
             </MenuItem>
           </Fragment>
@@ -249,12 +252,12 @@ const MaterialAppBar = ({ history }) => {
           <MenuItem>
             <span
               style={{ cursor: 'pointer', color: '#ffffff' }}
-              onClick={signout} 
+              onClick={logout} 
             >
-              <IconButton aria-label='Signout' color='inherit'>
+              <IconButton aria-label='Logout' color='inherit'>
                 <ExitToAppIcon />
               </IconButton>
-              Signout
+              Logout
             </span>
           </MenuItem>
         )}
@@ -334,7 +337,7 @@ const MaterialAppBar = ({ history }) => {
             {!isAuthenticated() && (
               <Fragment>
                 <Link style={isActive(history, '/login')} to='/login'>
-                  <IconButton aria-label='Signin' color='inherit'>
+                  <IconButton aria-label='Login' color='inherit'>
                     <AccountCircleIcon />
                     <Typography noWrap>Login</Typography>
                   </IconButton>
@@ -353,15 +356,17 @@ const MaterialAppBar = ({ history }) => {
               <span
                 style={{ cursor: 'pointer', color: '#ffffff' }}
                 onClick={() =>
-                  signout(() => {
+                  logout(() => {
                     history.push('/');
                   })
                 }
               >
-                <IconButton aria-label='Signout' color='inherit'>
+               
+                <IconButton aria-label='Logout' color='inherit'>
                   <ExitToAppIcon />
-                  <Typography noWrap>Signout</Typography>
+                  <Typography noWrap>Logout</Typography>
                 </IconButton>
+                
               </span>
             )}
           </div>

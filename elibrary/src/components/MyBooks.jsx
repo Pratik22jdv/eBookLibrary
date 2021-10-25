@@ -20,8 +20,7 @@ const Books = () => {
 	//const [productsByArrival, setProductsByArrival] = useState([]);
 	//const [error, setError] = useState([]);
 
-	const loadProductsBySell = () => {
-		console.log("user", user);
+	const loadMyBooks = () => {
 		userBooks(user._id).then((data) => {
 			setMyBooks(data);
 
@@ -29,9 +28,7 @@ const Books = () => {
 	};
 
 	useEffect(() => {
-		console.log("aai ghal");
-		loadProductsBySell();
-		console.log(myBooks);
+		loadMyBooks();
 	}, []);
 
 	// const set_Book_Open = async (product) => {
