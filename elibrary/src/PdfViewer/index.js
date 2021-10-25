@@ -6,7 +6,7 @@ import '@react-pdf-viewer/core/lib/styles/index.css';
 import { AuthContext } from '../context/AuthContext';
 import pdf_file from "./Book_PDF/Harry Potter and the Philosopher's Stone.pdf";
 import pdf_file2 from "./Book_PDF/Harry Potter and Chamber of Secrets.pdf"
-
+import pdf_file3 from './Book_PDF/Core Python Programming.pdf'
 const PdfViewer = () => {
 
 	const BookOpen = JSON.parse(localStorage.getItem('userBookOpen'))
@@ -21,6 +21,10 @@ const PdfViewer = () => {
 		case "Harry Potter and Chamber of Secrets":
 			BookLink = pdf_file2;
 			break
+
+		case "Core Python Programming":
+			BookLink = pdf_file3;
+			break;
 		default:
 			console.log('book name incorrect');
 			break;
