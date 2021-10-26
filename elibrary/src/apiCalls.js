@@ -1,21 +1,27 @@
-import axios from "axios";
+import axios from 'axios';
 import queryString from 'query-string';
 
 export const loginCall = async (userCredential, dispatch, setMessage) => {
-  dispatch({ type: "LOGIN_START" });
+  dispatch({ type: 'LOGIN_START' });
   try {
-    const res = await axios.post("http://localhost:3000/api/auth/login", userCredential);
-    dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
+    const res = await axios.post(
+      'http://localhost:3000/api/auth/login',
+      userCredential
+    );
+    dispatch({ type: 'LOGIN_SUCCESS', payload: res.data });
   } catch (error) {
-    setMessage("Invalid email or password");
-    dispatch({ type: "LOGIN_FAILURE", payload: error });
+    setMessage('Invalid email or password');
+    dispatch({ type: 'LOGIN_FAILURE', payload: error });
   }
 };
 
 export const getProducts = (sortBy) => {
-  return fetch(`http://localhost:3000/products?sortBy=${sortBy}&order=desc&limit=8`, {
-    method: 'GET',
-  })
+  return fetch(
+    `http://localhost:3000/products?sortBy=${sortBy}&order=desc&limit=8`,
+    {
+      method: 'GET',
+    }
+  )
     .then((response) => {
       return response.json();
     })
@@ -56,24 +62,30 @@ export const read = (productId) => {
 };
 
 export const borrowBook = (productId, userId) => {
-  return fetch(`http://localhost:3000/api/users/${productId}/borrow?userId=${userId}`, {
-    method: 'PUT',
-  })
+  return fetch(
+    `http://localhost:3000/api/users/${productId}/borrow?userId=${userId}`,
+    {
+      method: 'PUT',
+    }
+  )
     .then((response) => {
       return response.json();
     })
     .catch((err) => console.log(err));
-}
+};
 
 export const returnBook = (productId, userId) => {
-  return fetch(`http://localhost:3000/api/users/${productId}/return?userId=${userId}`, {
-    method: 'PUT',
-  })
+  return fetch(
+    `http://localhost:3000/api/users/${productId}/return?userId=${userId}`,
+    {
+      method: 'PUT',
+    }
+  )
     .then((response) => {
       return response.json();
     })
     .catch((err) => console.log(err));
-}
+};
 
 export const userBooks = (userId) => {
   return fetch(`http://localhost:3000/api/users/books/${userId}`, {
@@ -83,7 +95,7 @@ export const userBooks = (userId) => {
       return response.json();
     })
     .catch((err) => console.log(err));
-}
+};
 export const getProductCategory = (categoryId) => {
   return fetch(`http://localhost:3000/categories/${categoryId}`, {
     method: 'GET',
@@ -92,4 +104,4 @@ export const getProductCategory = (categoryId) => {
       return response.json();
     })
     .catch((err) => console.log(err));
-}
+};

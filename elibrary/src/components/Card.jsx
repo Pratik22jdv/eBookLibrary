@@ -65,13 +65,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function RenderComments({ comments,  dishId }) {
+function RenderComments({ comments,  productId }) {
   const comment_img = {
     height: 120,
     width: 120,
   };
   const comment_box = {
-    height: 500,
+    height: 100,
     overflow: 'auto',
   };
 
@@ -89,15 +89,11 @@ function RenderComments({ comments,  dishId }) {
                         <Media body>
                           <Media heading className={`ml-5 h5`}>
                             {comment.author}
-                            <small className='text-muted ml-4'>
+                            {/* <small className='text-muted ml-4'>
                               <i>
-                                {new Intl.DateTimeFormat('en-US', {
-                                  year: 'numeric',
-                                  month: 'short',
-                                  day: '2-digit',
-                                }).format(new Date(Date.parse(comment.date)))}
+                               comment date
                               </i>
-                            </small>
+                            </small> */}
                           </Media>
                           <p className={`ml-5`}>{comment.comment}</p>
                         </Media>
@@ -108,7 +104,7 @@ function RenderComments({ comments,  dishId }) {
             </Media>
         </div>
         <hr />
-        <CommentForm dishId={dishId} />
+        <CommentForm productId={productId} />
       </div>
     );
   } else return <div></div>;
@@ -332,11 +328,13 @@ const Card = ({
                 <div style={{display:"block"}, {paddingTop:"10px"}}>{showReturnBookButton(showReturnButton)}</div>
                 {/* {showAddToCartBtn(showAddToCartButton)} */}
                 {/* {showRemoveButton(showRemoveProductButton)} */}
+                
               
               {/* {showCartUpdateOptions(cartUpdate)} */}
-              {showComment?<RenderComments
-              comments={comments}
-              dishId={1}
+              {console.log(product.comments)}
+              {showComment ? <RenderComments
+              comments={product.comments}
+              productId={product._id}
             />:<></>}
             </CardContent>
             <CardActions disableSpacing>

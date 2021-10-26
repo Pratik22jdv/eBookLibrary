@@ -36,6 +36,44 @@ class CommentForm extends Component {
   handleCommentFormSubmit(values) {
     this.toggleCommentForm();
     console.log(values)
+    const productId = this.props.productId;
+    const newComment = {
+    productId: productId ,
+    rating: values.rating,
+    author: values.author,
+    comment: values.comment,
+  };
+
+    fetch(`http://localhost:3000/products/comments`, {
+    method: 'POST',
+    body: JSON.stringify(newComment),
+    headers: {
+      'Content-Type': 'application/JSON',
+    },
+    credentials: 'same-origin',
+  })
+    .then(
+      (response) => {
+        if (response.ok) {
+          return response;
+        } else {
+          var error = new Error(
+            'Error ' + response.status + ': ' + response.statusText
+          );
+          error.response = response;
+          throw error;
+        }
+      },
+      (error) => {
+        var errmess = new Error(error.message);
+        throw errmess;
+      }
+    )
+    .then((response) => response.json())
+    .catch((error) => {
+      console.log('Post Comments', error.message);
+      alert('Your Comment could not be posted\n Error: ' + error.message);
+    });
   }
 
   render() {
