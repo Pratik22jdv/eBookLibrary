@@ -186,17 +186,19 @@ const MaterialAppBar = ({ history }) => {
             Shop
           </Link>
         </MenuItem>
-
+        {isAuthenticated() && ( 
         <MenuItem>
-          <Link style={isActive(history, '/cart')} to='/cart'>
-            <IconButton aria-label='Cart' color='inherit'>
+          <Link style={isActive(history, '/myBooks')} to='/myBooks'>
+            <IconButton aria-label='MyBooks' color='inherit'>
               <Badge badgeContent={0} color='secondary'>
                 <ShoppingCartIcon />
               </Badge>
             </IconButton>
-            Cart
+            My Books
           </Link>
         </MenuItem>
+        )
+        }
 
         {isAuthenticated() && (
           <MenuItem>
@@ -301,12 +303,12 @@ const MaterialAppBar = ({ history }) => {
               </IconButton>
             </Link>
 
-            <Link style={isActive(history, '/cart')} to='/cart'>
-              <IconButton aria-label='Cart' color='inherit'>
+            <Link style={isActive(history, '/myBooks')} to='/myBooks'>
+              <IconButton aria-label='myBooks' color='inherit'>
                 <Badge badgeContent={0} color='secondary'>
                   <ShoppingCartIcon />
                 </Badge>
-                <Typography noWrap>Cart</Typography>
+                <Typography noWrap>My Books</Typography>
               </IconButton>
             </Link>
 

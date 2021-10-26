@@ -23,6 +23,7 @@ const Books = () => {
 	const loadMyBooks = () => {
 		userBooks(user._id).then((data) => {
 			setMyBooks(data);
+			console.log(user);
 
 		});
 	};
@@ -44,7 +45,7 @@ const Books = () => {
 	return (
 		<div>
 			<Menu />
-			<div className='row' style={{ paddingTop: "50px" }}>
+			<div className='row' style={{ paddingTop: "20px" }}>
 				<div className='col-md-1'></div>
 				<div className='col-md-10'>
 					<h2 className='mb-2 mt-4'>Purchased Books</h2>
@@ -52,13 +53,9 @@ const Books = () => {
 						{myBooks.map((product, i) => (
 							<div key={i} className='col-xl-4 col-lg-6 col-md-6 col-sm-12'>
 								{/* <Button onClick={setBookOpen("xyz")}> */}
-								<Card product={product} />
+								<Card product={product} showReadButton={true} showViewProductButton={false} showReturnButton={true}/>
 
-								<Link to="/pdfviewer" onClick={() => localStorage.setItem('userBookOpen', JSON.stringify(product))}>
-									<Button variant='contained' color='success' style={{ width: "70%" }}>
-										Open Book
-									</Button>
-								</Link>
+								
 							</div>
 						))}
 					</div>

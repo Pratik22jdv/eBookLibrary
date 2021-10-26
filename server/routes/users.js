@@ -117,9 +117,27 @@ router.put("/:id/borrow", async (req, res) => {
   
 });
 
+router.put("/:id/return", async (req, res) => {
+  // console.log("hii");
+  
+    try {
+      //console.log(req.params.id);
+      const product = await Product.findById(req.params.id);
+      const currentUser = await User.findById(req.query.userId);
+      if (currentUser.borrowedBooks.includes(req.params.id)) {
+        await currentUser.updateOne({ $pull: { borrowedBooks: product._id } });
+        res.status(200).json("Book has been returned");
+      } else {
+        res.status(403).json("you don't borrow this book");
+      }
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  
+});
+
 router.get("/books/:id", async (req, res) => {
   try {
-    console.log("in try");
     const user = await User.findById(req.params.id);
     console.log(user);
     const userBooks = await Promise.all(
