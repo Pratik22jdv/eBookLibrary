@@ -66,7 +66,7 @@ const Product = (props) => {
         });
         alert("Congratulations!! You purchased book successfully...")
       }
-      history.push('/cart');
+      history.push('/myBooks');
       window.location.reload(false);
     }
 

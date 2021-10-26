@@ -33,6 +33,10 @@ const productSchema = new mongoose.Schema(
     rating:{
       type: String,
     },
+    comments:{
+      type: Array,
+      default: [],
+    }
   },
   { timestamps: true }
 );

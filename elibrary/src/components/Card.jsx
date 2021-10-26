@@ -118,7 +118,7 @@ const Card = ({
         });
         alert("Congratulations!! You returned book successfully...")
       }
-      history.push('/cart');
+      history.push('/myBooks');
       window.location.reload(false);
     }
 
