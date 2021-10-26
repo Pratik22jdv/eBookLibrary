@@ -65,6 +65,16 @@ export const borrowBook = (productId, userId) => {
     .catch((err) => console.log(err));
 }
 
+export const returnBook = (productId, userId) => {
+  return fetch(`http://localhost:3000/api/users/${productId}/return?userId=${userId}`, {
+    method: 'PUT',
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((err) => console.log(err));
+}
+
 export const userBooks = (userId) => {
   return fetch(`http://localhost:3000/api/users/books/${userId}`, {
     method: 'GET',

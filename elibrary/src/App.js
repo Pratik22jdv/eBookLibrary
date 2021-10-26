@@ -38,7 +38,7 @@ function App() {
         </Route>
 
 
-        <Route path="/cart">
+        <Route path="/myBooks">
           {user ? <MyBooks /> : <Redirect to="/" />}
         </Route>
 

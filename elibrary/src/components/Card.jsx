@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Redirect } from 'react-router-dom';
+import React, { useState, useEffect, useContext } from 'react';
+import { Redirect, useHistory } from 'react-router-dom';
 //import ShowImage from './ShowImage';
 import moment from 'moment';
 
@@ -22,6 +22,9 @@ import Link from '@material-ui/core/Link';
 import { getProductCategory } from '../apiCalls';
 import { Category } from '@material-ui/icons';
 
+import { returnBook } from '../apiCalls';
+import { AuthContext } from '../context/AuthContext';
+
 //import { addItem, updateItem, removeItem } from './cartHelpers';
 
 const useStyles = makeStyles((theme) => ({
@@ -43,6 +46,7 @@ const useStyles = makeStyles((theme) => ({
     height: '100%',
     display: 'flex',
     flexDirection: 'column',
+    boxShadow: '5px 4px #b4b1b1',
   },
   cardMedia: {
     paddingTop: '56.25%', // 16:9
@@ -62,11 +66,17 @@ const useStyles = makeStyles((theme) => ({
 const Card = ({
   product,
   showViewProductButton = true,
+  showReadButton=false,
+  showReturnButton=false,
   setRun = (f) => f, // default value of function
   run = undefined, // default value of undefined
 }) => {
   const [redirect, setRedirect] = useState(false);
+  const {user} = useContext(AuthContext);
+  const history = useHistory();
   // const [count, setCount] = useState(product.count);
+
+
 
   const showViewButton = (showViewProductButton) => {
     return (
@@ -76,6 +86,49 @@ const Card = ({
             View Product
           </Button>
         </Link>
+      )
+    );
+  };
+
+  const showReadBookButton = (showReadButton) => {
+    return (
+      showReadButton && (
+        
+        <Link href={"/pdfviewer"} onClick={() => localStorage.setItem('userBookOpen', JSON.stringify(product))}>
+        <button type="submit" className="btn btn-success btn-sm btn-block" style={{ width: "100%" }} >Read Book</button>
+      </Link>
+      )
+    );
+  };
+
+  const removeItem = () => {
+    if (user) {
+      const productId = product._id;
+      console.log("us",user);
+      console.log("ub", user.borrowedBooks)
+      console.log("id", productId);
+
+      // console.log("user", user);
+      // console.log("u.b", user.borrowedBooks);
+      if (user.borrowedBooks.indexOf(productId) == -1) {
+        alert("You don't borrow this book!!")
+      }
+      else {
+        returnBook(productId, user._id).then((data) => {
+        });
+        alert("Congratulations!! You returned book successfully...")
+      }
+      history.push('/cart');
+      window.location.reload(false);
+    }
+
+    else history.push('/login');
+  }
+
+  const showReturnBookButton = (showReturnnButton) => {
+    return (
+      showReturnButton && (
+        <button className="btn btn-success btn-sm btn-block" style={{ width: "100%" }} onClick={removeItem}>Return Book</button>
       )
     );
   };
@@ -208,7 +261,7 @@ const Card = ({
               <Typography gutterBottom variant='h5' component='h2'>
                 {product.name}
               </Typography>
-              <Typography className={classes.productDescription}>{product.description.substring(0, 50)}...</Typography>
+              <Typography className={classes.productDescription}>{product.description.substring(0, 100)}...</Typography>
               <p className='black-10'>Author: {product.author}</p>
               <p className='black-10'>Price: ${product.price}</p>
               <p className='black-10'>Rating: {product.rating}</p>
@@ -220,11 +273,13 @@ const Card = ({
               </p> */}
               {/* {showStock(product.quantity)}
               <br></br> */}
-              <span>
-                {showViewButton(showViewProductButton)}
+             
+                <div style={{display:"block"}}>{showViewButton(showViewProductButton)}</div>
+                <div style={{display:"block"}, {paddingTop:"10px"}}>{showReadBookButton(showReadButton)}</div>
+                <div style={{display:"block"}, {paddingTop:"10px"}}>{showReturnBookButton(showReturnButton)}</div>
                 {/* {showAddToCartBtn(showAddToCartButton)} */}
                 {/* {showRemoveButton(showRemoveProductButton)} */}
-              </span>
+              
               {/* {showCartUpdateOptions(cartUpdate)} */}
             </CardContent>
           </CardM>

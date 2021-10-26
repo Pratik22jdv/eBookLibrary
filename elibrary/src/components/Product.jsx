@@ -56,8 +56,8 @@ const Product = (props) => {
     if (user) {
       const productId = props.match.params.productId;
 
-      console.log("user", user);
-      console.log("u.b", user.borrowedBooks);
+      // console.log("user", user);
+      // console.log("u.b", user.borrowedBooks);
       if (user.borrowedBooks.indexOf(productId) !== -1) {
         alert("You already borrowed this book!!")
       }
