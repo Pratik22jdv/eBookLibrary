@@ -6,7 +6,8 @@
 ----------
 
 
-# Core Python Programming
+# JavaScript and HTML5 
+
 
 <div style="page-break-after: always;"></div>
 
@@ -18,7 +19,8 @@
 ----------
 
 
-# Core Python Programming
+# JavaScript and HTML5 
+
 
 <div style="page-break-after: always;"></div>
 
@@ -30,6 +32,7 @@
 ----------
 
 
-# Core Python Programming
+# JavaScript and HTML5
+
 
 <div style="page-break-after: always;"></div>

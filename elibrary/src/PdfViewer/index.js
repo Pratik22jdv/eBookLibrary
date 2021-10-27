@@ -7,6 +7,7 @@ import { AuthContext } from '../context/AuthContext';
 import pdf_file from "./Book_PDF/Harry Potter and the Philosopher's Stone.pdf";
 import pdf_file2 from "./Book_PDF/Harry Potter and Chamber of Secrets.pdf"
 import pdf_file3 from './Book_PDF/Core Python Programming.pdf'
+import pdf_file4 from './Book_PDF/JavaScript and HTML5 Now.pdf'
 const PdfViewer = () => {
 
 	const BookOpen = JSON.parse(localStorage.getItem('userBookOpen'))
@@ -24,6 +25,9 @@ const PdfViewer = () => {
 
 		case "Core Python Programming":
 			BookLink = pdf_file3;
+			break;
+		case "JavaScript and HTML5 Now":
+			BookLink = pdf_file4;
 			break;
 		default:
 			console.log('book name incorrect');
