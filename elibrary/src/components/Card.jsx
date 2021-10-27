@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Redirect, useHistory } from 'react-router-dom';
 //import ShowImage from './ShowImage';
 import moment from 'moment';
-
+import comments from './comments'
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
 import CameraIcon from '@material-ui/icons/PhotoCamera';
@@ -20,10 +20,12 @@ import Container from '@material-ui/core/Container';
 import Link from '@material-ui/core/Link';
 
 import { getProductCategory } from '../apiCalls';
-import { Category } from '@material-ui/icons';
+import { Category, ExpandMore } from '@material-ui/icons';
 
 import { returnBook } from '../apiCalls';
 import { AuthContext } from '../context/AuthContext';
+import { Media } from 'reactstrap';
+import CommentForm from './commentForm';
 
 //import { addItem, updateItem, removeItem } from './cartHelpers';
 
@@ -62,6 +64,51 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(6),
   },
 }));
+
+function RenderComments({ comments,  productId }) {
+  const comment_img = {
+    height: 120,
+    width: 120,
+  };
+  const comment_box = {
+    height: 100,
+    overflow: 'auto',
+  };
+
+  if (comments != null) {
+    return (
+      <div>
+        <h4>Comments</h4>
+        <div style={comment_box}>
+            <Media list>
+              {comments.map((comment) => {
+                return (
+                    <div className='shadow'>
+                      <Media className='p-2'>
+                    
+                        <Media body>
+                          <Media heading className={`ml-5 h5`}>
+                            {comment.author}
+                            {/* <small className='text-muted ml-4'>
+                              <i>
+                               comment date
+                              </i>
+                            </small> */}
+                          </Media>
+                          <p className={`ml-5`}>{comment.comment}</p>
+                        </Media>
+                      </Media>
+                    </div>
+                );
+              })}
+            </Media>
+        </div>
+        <hr />
+        <CommentForm productId={productId} />
+      </div>
+    );
+  } else return <div></div>;
+}
 
 const Card = ({
   product,
@@ -150,6 +197,8 @@ const Card = ({
       return <Redirect to='/cart' />;
     }
   };
+
+  const [showComment, setShowComment] = useState(false);
 
   // const showAddToCartBtn = (showAddToCartButton) => {
   //   return (
@@ -279,9 +328,18 @@ const Card = ({
                 <div style={{display:"block"}, {paddingTop:"10px"}}>{showReturnBookButton(showReturnButton)}</div>
                 {/* {showAddToCartBtn(showAddToCartButton)} */}
                 {/* {showRemoveButton(showRemoveProductButton)} */}
+                
               
               {/* {showCartUpdateOptions(cartUpdate)} */}
+              {console.log(product.comments)}
+              {showComment ? <RenderComments
+              comments={product.comments}
+              productId={product._id}
+            />:<></>}
             </CardContent>
+            <CardActions disableSpacing>
+              <ExpandMore  onClick={()=>{setShowComment(!showComment)}}/>
+            </CardActions>
           </CardM>
         </Grid>
       </Grid>

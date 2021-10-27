@@ -1,7 +1,7 @@
-const router = require("express").Router();
-const BookSchema = require("../models/Book");
-const User = require("../models/User");
-const Product = require("../models/Product");
+const router = require('express').Router();
+const BookSchema = require('../models/Book');
+const User = require('../models/User');
+const Product = require('../models/Product');
 
 // const express = require('express');
 // const router = express.Router();
@@ -41,78 +41,100 @@ const Product = require("../models/Product");
 );*/
 
 list = (req, res) => {
-    let order = req.query.order ? req.query.order : 'asc';
-    let sortBy = req.query.sortBy ? req.query.sortBy : '_id';
-    let limit = req.query.limit ? parseInt(req.query.limit) : 6;
-  
-    Product.find()
-      .sort([[sortBy, order]])
-      .limit(limit)
-      .exec((err, products) => {
-        if (err) {
-          return res.status(400).json({
-            error: 'Products not found',
-          });
-        }
-        res.json(products);
-      });
-  };
+  let order = req.query.order ? req.query.order : 'asc';
+  let sortBy = req.query.sortBy ? req.query.sortBy : '_id';
+  let limit = req.query.limit ? parseInt(req.query.limit) : 6;
 
-  listSearch = (req, res) => {
-    // create query object to hold search value and category value
-    const query = {};
-    // assign search value to query.name
-    if (req.query.search) {
-      query.name = { $regex: req.query.search, $options: 'i' };
-      // assigne category value to query.category
-      if (req.query.category && req.query.category != 'All') {
-        query.category = req.query.category;
+  Product.find()
+    .sort([[sortBy, order]])
+    .limit(limit)
+    .exec((err, products) => {
+      if (err) {
+        return res.status(400).json({
+          error: 'Products not found',
+        });
       }
-      // find the product based on query object with 2 properties
-      // search and category
-      Product.find(query, (err, products) => {
-        if (err) {
-          return res.status(400).json({
-            error: errorHandler(err),
-          });
-        }
-        res.json(products);
-      });
+      res.json(products);
+    });
+};
+
+listSearch = (req, res) => {
+  // create query object to hold search value and category value
+  const query = {};
+  // assign search value to query.name
+  if (req.query.search) {
+    query.name = { $regex: req.query.search, $options: 'i' };
+    // assigne category value to query.category
+    if (req.query.category && req.query.category != 'All') {
+      query.category = req.query.category;
     }
-  };
+    // find the product based on query object with 2 properties
+    // search and category
+    Product.find(query, (err, products) => {
+      if (err) {
+        return res.status(400).json({
+          error: errorHandler(err),
+        });
+      }
+      res.json(products);
+    });
+  }
+};
 
-  read = (req, res) => {
-    req.product.photo = undefined;
-    return res.json(req.product);
-  };
+read = (req, res) => {
+  req.product.photo = undefined;
+  return res.json(req.product);
+};
 
-  products_get_product = (req, res, next) => {
-    const id = req.params.productId;
-    Product.findById(id)
-      .exec()
-      .then(doc => {
-        
-        if (doc) {
-          res.status(200).json( doc);
+products_get_product = (req, res, next) => {
+  const id = req.params.productId;
+  Product.findById(id)
+    .exec()
+    .then((doc) => {
+      if (doc) {
+        res.status(200).json(doc);
+      } else {
+        res
+          .status(404)
+          .json({ message: 'No valid entry found for provided ID' });
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({ error: err });
+    });
+};
+
+const post_comments = (req, res, next) => {
+  Product.findById(req.body.productId)
+    .then(
+      (dish) => {
+        console.log(dish);
+        if (dish != null) {
+          dish.comments.push(req.body);
+          dish.save().then(
+            (dish) => {
+              res.statusCode = 200;
+              res.setHeader('Content-Type', 'application/json');
+              res.json(dish);
+            },
+            (err) => next(err)
+          );
         } else {
-          res
-            .status(404)
-            .json({ message: "No valid entry found for provided ID" });
+          err = new Error('Dish ' + req.params.productId + ' not found');
+          err.status = 404;
+          return next(err);
         }
-      })
-      .catch(err => {
-        console.log(err);
-        res.status(500).json({ error: err });
-      });
-  };
+      },
+      (err) => next(err)
+    )
+    .catch((err) => next(err));
+};
 
-
-
-
-  
 router.get('/', list);
 router.get('/search', listSearch);
 router.get('/:productId', products_get_product);
+router.post('/comments', post_comments);
 
 //router.post('/product/create', create);
 // router.get('/products/search', listSearch);
