@@ -27,16 +27,16 @@ const Product = (props) => {
     setTransactionData({ ...TransactionData, [name]: value })
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (TransactionData.Name && TransactionData.email && TransactionData.CardNum) {
-      const newTransactionData = {
-        ...TransactionData,
-        TransactionID: `${user.email} \n ${new Date().getTime().toString()}`
-      };
-      console.log(TransactionData)
-    }
-  };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   if (TransactionData.Name && TransactionData.email && TransactionData.CardNum) {
+  //     const newTransactionData = {
+  //       ...TransactionData,
+  //       TransactionID: `${user.email} \n ${new Date().getTime().toString()}`
+  //     };
+  //     console.log(TransactionData)
+  //   }
+  // };
 
   const loadSingleProduct = (productId) => {
     read(productId).then((data) => {
@@ -54,6 +54,20 @@ const Product = (props) => {
 
   const buyItem = () => {
     if (user) {
+
+
+      /** */
+      setTransactionData(
+        {
+          ...TransactionData,
+          TransactionID: `${user.email} + ${new Date().getTime().toString()}`
+        }
+      )
+      console.log(TransactionData)
+      // localStorage.setItem('TransactionData', JSON.stringify(TransactionData))
+      /** */
+
+
       const productId = props.match.params.productId;
 
       // console.log("user", user);
@@ -95,7 +109,7 @@ const Product = (props) => {
         <div className="card" style={{ width: "100%" }}>
           <div className="card-body">
             {/* <h5 className="card-title">Card title</h5> */}
-            <form onSubmit={handleSubmit}>
+            <form>
               <div class="input-group mb-3">
                 <span class="input-group-text">Name</span>
                 <input type="text" name="Name" class="form-control" placeholder="Enter your name"
