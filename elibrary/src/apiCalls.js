@@ -17,7 +17,7 @@ export const loginCall = async (userCredential, dispatch, setMessage) => {
 
 export const getProducts = (sortBy) => {
   return fetch(
-    `http://localhost:3000/products?sortBy=${sortBy}&order=desc&limit=8`,
+    `http://localhost:3000/products?sortBy=${sortBy}&order=desc&limit=18`,
     {
       method: 'GET',
     }

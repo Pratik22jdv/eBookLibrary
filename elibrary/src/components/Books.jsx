@@ -12,7 +12,7 @@ const Books = () => {
   const [error, setError] = useState([]);
 
   const loadProductsBySell = () => {
-    getProducts('sold').then((data) => {
+    getProducts('rating').then((data) => {
         setProductsBySell(data);
       
     });
