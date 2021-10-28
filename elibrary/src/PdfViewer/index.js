@@ -15,6 +15,7 @@ import pdf_file7 from './Book_PDF/Thomas Calculus 14th Edition.pdf'
 import pdf_file8 from './Book_PDF/Basic Probability What Every Math Student Should Know Kindle.pdf'
 import pdf_file9 from './Book_PDF/Shivaji- The Great Maratha.pdf'
 import pdf_file10 from './Book_PDF/The Art of War.pdf'
+import pdf_file11 from './Book_PDF/New Pdf.pdf'
 
 const PdfViewer = () => {
 
@@ -53,6 +54,9 @@ const PdfViewer = () => {
 			break;
 		case "The Art of War":
 			BookLink = pdf_file10;
+			break;
+		case "New Pdf":
+			BookLink = pdf_file11;
 			break;
 		default:
 			console.log('book name incorrect');
