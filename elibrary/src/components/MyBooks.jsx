@@ -31,14 +31,6 @@ const Books = () => {
 	useEffect(() => {
 		loadMyBooks();
 	}, []);
-
-	// const set_Book_Open = async (product) => {
-	// 	await setBookOpen(product.name)
-	// }
-	// useEffect(() => {
-	// 	localStorage.setItem('userBookOpen', BookOpen)
-	// 	console.log('BookOpen', BookOpen)
-	// }, [BookOpen])
 	const saveBookOpenToLocal = () => {
 
 	}

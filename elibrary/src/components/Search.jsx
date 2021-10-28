@@ -81,7 +81,7 @@ const Search = () => {
 
   const searchMessage = (searched, results) => {
     if (searched && results.length > 0) {
-      return `Found ${results.length} products`;
+      return `Found ${results.length} Books`;
     }
     if (searched && results.length < 1) {
       return `Search: No products found`;

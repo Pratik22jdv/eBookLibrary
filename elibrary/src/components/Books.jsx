@@ -1,14 +1,9 @@
 import React, { useState, useEffect } from 'react';
-//import Layout from './Layout';
 import { getProducts } from '../apiCalls';
 import Card from './Card';
-//import Search from './Search';
-//import 'fontsource-roboto';
-//import Copyright from './Copyright';
 
 const Books = () => {
   const [productsBySell, setProductsBySell] = useState([]);
-  //const [productsByArrival, setProductsByArrival] = useState([]);
   const [error, setError] = useState([]);
 
   const loadProductsBySell = () => {
