@@ -9,6 +9,12 @@ import pdf_file1 from "./Book_PDF/Harry Potter and the Philosophers Stone.pdf";
 import pdf_file2 from "./Book_PDF/Harry Potter and Chamber of Secrets.pdf"
 import pdf_file3 from './Book_PDF/Core Python Programming.pdf'
 import pdf_file4 from './Book_PDF/JavaScript and HTML5 Now.pdf'
+import pdf_file5 from './Book_PDF/PYTHON PROGRAMMING.pdf'
+import pdf_file6 from './Book_PDF/CPP PROGRAMMING.pdf'
+import pdf_file7 from './Book_PDF/Thomas Calculus 14th Edition.pdf'
+import pdf_file8 from './Book_PDF/Basic Probability What Every Math Student Should Know Kindle.pdf'
+import pdf_file9 from './Book_PDF/Shivaji- The Great Maratha.pdf'
+import pdf_file10 from './Book_PDF/The Art of War.pdf'
 
 const PdfViewer = () => {
 
@@ -24,12 +30,29 @@ const PdfViewer = () => {
 		case "Harry Potter and Chamber of Secrets":
 			BookLink = pdf_file2;
 			break;
-
 		case "Core Python Programming":
 			BookLink = pdf_file3;
 			break;
 		case "JavaScript and HTML5 Now":
 			BookLink = pdf_file4;
+			break;
+		case "PYTHON PROGRAMMING":
+			BookLink = pdf_file5;
+			break;
+		case "C++ PROGRAMMING and STL":
+			BookLink = pdf_file6;
+			break;
+		case "Thomas' Calculus 14th Edition":
+			BookLink = pdf_file7;
+			break;
+		case "Basic Probability: What Every Math Student Should Know Kindle":
+			BookLink = pdf_file8;
+			break;
+		case "Shivaji- The Great Maratha":
+			BookLink = pdf_file9;
+			break;
+		case "The Art of War":
+			BookLink = pdf_file10;
 			break;
 		default:
 			console.log('book name incorrect');
