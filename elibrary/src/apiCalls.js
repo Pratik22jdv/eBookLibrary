@@ -74,6 +74,34 @@ export const borrowBook = (productId, userId) => {
     .catch((err) => console.log(err));
 };
 
+// export const payment = (productId, userId, TransactionData) => {
+//   const payment_data = { "userId": userId, "productId": productId, "TransactionData": TransactionData };
+//   console.log(payment_data);
+//   return fetch(
+//     `http://localhost:3000/payments`,
+//     {
+//       method: 'POST',
+//       // body: { "userId": userId, "productId": productId, "TransactionData": TransactionData },
+//       body: { "product_id": "61781ca707205a9a4112eddc", "transactionID": { "Name": "1234", "email": "1234", "CardNum": "2345", "TransactionID": "" }, "userID": "617927fa82d262089a3556a5" },
+//     }
+//   )
+// };
+
+export const payment = async (productId, userId, TransactionData) => {
+  // dispatch({ type: 'LOGIN_START' });
+  const payment_data = { "userId": userId, "productId": productId, "TransactionData": TransactionData };
+  try {
+    const res = await axios.post(
+      'http://localhost:3000/payments',
+      payment_data
+    );
+
+  } catch (error) {
+
+    console.log(error)
+  }
+};
+
 export const returnBook = (productId, userId) => {
   return fetch(
     `http://localhost:3000/api/users/${productId}/return?userId=${userId}`,

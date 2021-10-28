@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useHistory } from "react-router";
 //import Layout from './Layout';
-import { read, borrowBook } from "../apiCalls";
+import { read, borrowBook, payment } from "../apiCalls";
 import Card from './Card';
 import { AuthContext } from '../context/AuthContext';
 
@@ -18,7 +18,7 @@ const Product = (props) => {
       Name: "",
       email: "",
       CardNum: "",
-      TransactionID: ""
+      // TransactionID: ""
     })
 
   const handleChange = (e) => {
@@ -60,10 +60,11 @@ const Product = (props) => {
       setTransactionData(
         {
           ...TransactionData,
-          TransactionID: `${user.email} + ${new Date().getTime().toString()}`
+          // TransactionID: `${user.email} + ${new Date().getTime().toString()}`
         }
       )
       console.log(TransactionData)
+      // console.log(JSON.stringify({ user._id, productId, TransactionData }))
       // localStorage.setItem('TransactionData', JSON.stringify(TransactionData))
       /** */
 
@@ -78,6 +79,7 @@ const Product = (props) => {
       else {
         borrowBook(productId, user._id).then((data) => {
         });
+        payment(productId, user._id, TransactionData)
         alert("Congratulations!! You purchased book successfully...")
       }
       history.push('/myBooks');
