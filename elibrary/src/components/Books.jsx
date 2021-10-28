@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState, useEffect } from "react";
 
 import { getProducts } from "../apiCalls";
@@ -6,6 +7,14 @@ import Card from "./Card";
 const Books = () => {
   const [productsBySell, setProductsBySell] = useState([]);
 
+=======
+import React, { useState, useEffect } from 'react';
+import { getProducts } from '../apiCalls';
+import Card from './Card';
+
+const Books = () => {
+  const [productsBySell, setProductsBySell] = useState([]);
+>>>>>>> aff3e04e9556118b146422a9a32ca1ad59d06527
   const [error, setError] = useState([]);
 
   const loadProductsBySell = () => {

@@ -115,8 +115,8 @@ const Card = ({
   showViewProductButton = true,
   showReadButton=false,
   showReturnButton=false,
-  setRun = (f) => f, // default value of function
-  run = undefined, // default value of undefined
+  setRun = (f) => f, 
+  run = undefined, 
 }) => {
   const [redirect, setRedirect] = useState(false);
   const {user} = useContext(AuthContext);
@@ -130,7 +130,7 @@ const Card = ({
       showViewProductButton && (
         <Link href={`/products/${product._id}`} className='mr-2'>
           <Button variant='contained' color='primary' style={{ width: "100%" }}>
-            View Product
+            View Details
           </Button>
         </Link>
       )
@@ -155,8 +155,7 @@ const Card = ({
       console.log("ub", user.borrowedBooks)
       console.log("id", productId);
 
-      // console.log("user", user);
-      // console.log("u.b", user.borrowedBooks);
+      
       if (user.borrowedBooks.indexOf(productId) == -1) {
         alert("You don't borrow this book!!")
       }
@@ -187,11 +186,6 @@ const Card = ({
     });
   }
 
-  // const addToCart = () => {
-  //   // console.log('added');
-  //   //addItem(product, setRedirect(true));
-  // };
-
   const shouldRedirect = (redirect) => {
     if (redirect) {
       return <Redirect to='/cart' />;
@@ -199,71 +193,6 @@ const Card = ({
   };
 
   const [showComment, setShowComment] = useState(false);
-
-  // const showAddToCartBtn = (showAddToCartButton) => {
-  //   return (
-  //     showAddToCartButton && (
-  //       <Button onClick={addToCart} variant='outlined' color='secondary'>
-  //         Add to cart
-  //       </Button>
-  //     )
-  //   );
-  // };
-
-  // const showStock = (quantity) => {
-  //   return quantity > 0 ? (
-  //     <span className='badge badge-primary badge-pill'>In Stock </span>
-  //   ) : (
-  //     <span className='badge badge-primary badge-pill'>Out of Stock </span>
-  //   );
-  // };
-
-  // const handleChange = (productId) => (event) => {
-  //   setRun(!run); // run useEffect in parent Cart
-  //   setCount(event.target.value < 1 ? 1 : event.target.value);
-  //   if (event.target.value >= 1) {
-  //     //updateItem(productId, event.target.value);
-  //   }
-  // };
-
-  // const showCartUpdateOptions = (cartUpdate) => {
-  //   return (
-  //     cartUpdate && (
-  //       <div className='mt-2'>
-  //         <div className='input-group mb-3'>
-  //           <div className='input-group-prepend'>
-  //             <span className='input-group-text'>Adjust Quantity</span>
-  //           </div>
-  //           <input
-  //             type='number'
-  //             className='form-control'
-  //             value={count}
-  //             onChange={handleChange(product._id)}
-  //           />
-  //         </div>
-  //       </div>
-  //     )
-  //   );
-  // };
-
-  // const showRemoveButton = (showRemoveProductButton) => {
-  //   return (
-  //     showRemoveProductButton && (
-  //       <Button
-  //         onClick={() => {
-  //          // removeItem(product._id);
-  //           setRun(!run); // run useEffect in parent Cart
-  //         }}
-  //         variant='contained'
-  //         color='secondary'
-  //         className={classes.button}
-  //         startIcon={<DeleteIcon />}
-  //       >
-  //         Remove Product
-  //       </Button>
-  //     )
-  //   );
-  // };
 
   const classes = useStyles();
   useEffect(() => {
