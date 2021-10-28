@@ -32,7 +32,7 @@ const Books = () => {
         <div className='col-md-10'>
           
 
-          <h2 className='mb-2 mt-4'>Best Sellers</h2>
+          <h2 className='mb-2 mt-4'></h2>
           <div className='row'>
             {productsBySell.map((product, i) => (
               <div key={i} className='col-xl-4 col-lg-6 col-md-6 col-sm-12'>

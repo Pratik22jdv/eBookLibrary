@@ -83,6 +83,7 @@ class CommentForm extends Component {
           <span className='fa fa-comments fa-lg'></span>Submit Comment
         </Button>
         <Modal
+          style={{marginTop:"100px"}}
           isOpen={this.state.isCommentFormOpen}
           toggle={this.toggleCommentForm}>
           <ModalHeader toggle={this.toggleCommentForm}>

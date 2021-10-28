@@ -178,14 +178,7 @@ const MaterialAppBar = ({ history }) => {
           </Link>
         </MenuItem>
 
-        <MenuItem>
-          <Link style={isActive(history, '/shop')} to='/shop'>
-            <IconButton aria-label='Shop' color='inherit'>
-              <StorefrontIcon />
-            </IconButton>
-            Shop
-          </Link>
-        </MenuItem>
+        
         {isAuthenticated() && ( 
         <MenuItem>
           <Link style={isActive(history, '/myBooks')} to='/myBooks'>
@@ -199,7 +192,7 @@ const MaterialAppBar = ({ history }) => {
         </MenuItem>
         )
         }
-
+{/* 
         {isAuthenticated() && (
           <MenuItem>
             <Link
@@ -212,7 +205,7 @@ const MaterialAppBar = ({ history }) => {
               Dashboard
             </Link>
           </MenuItem>
-        )}
+        )} */}
 
         {isAuthenticated()  && (
           <MenuItem>
@@ -296,13 +289,9 @@ const MaterialAppBar = ({ history }) => {
               </IconButton>
             </Link>
 
-            <Link style={isActive(history, '/shop')} to='/shop'>
-              <IconButton aria-label='Shop' color='inherit'>
-                <StorefrontIcon />
-                <Typography noWrap>Shop</Typography>
-              </IconButton>
-            </Link>
+           
 
+            {isAuthenticated() && (
             <Link style={isActive(history, '/myBooks')} to='/myBooks'>
               <IconButton aria-label='myBooks' color='inherit'>
                 <Badge badgeContent={0} color='secondary'>
@@ -311,6 +300,7 @@ const MaterialAppBar = ({ history }) => {
                 <Typography noWrap>My Books</Typography>
               </IconButton>
             </Link>
+            )}
 
             {isAuthenticated() && (
               <Link
@@ -324,7 +314,7 @@ const MaterialAppBar = ({ history }) => {
               </Link>
             )}
 
-            {isAuthenticated()  && (
+            {/* {isAuthenticated()  && (
               <Link
                 style={isActive(history, '/admin/dashboard')}
                 to='/admin/dashboard'
@@ -334,7 +324,7 @@ const MaterialAppBar = ({ history }) => {
                   <Typography noWrap>Dashboard</Typography>
                 </IconButton>
               </Link>
-            )}
+            )} */}
 
             {!isAuthenticated() && (
               <Fragment>
